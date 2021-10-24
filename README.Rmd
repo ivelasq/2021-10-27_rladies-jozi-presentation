@@ -23,6 +23,8 @@ I will be discussing tables as a format for communicating information and walkin
 
 `r emo::ji("computer")` [RStudio Cloud (requires login)](https://rstudio.cloud/project/3093601)
 
+`r emo::ji("world")` [Final Table] (https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
+
 `r emo::ji("link")` Links mentioned in talk:
 
 * [Isabella's Twitter](https://twitter.com/ivelasq3)
@@ -42,9 +44,5 @@ I will be discussing tables as a format for communicating information and walkin
 * [gtExtra](https://jthomasmock.github.io/gtExtras/)
 * [gtsummary](https://cran.r-project.org/web/packages/gtsummary/vignettes/rmarkdown.html)
 
-<iframe src='http://shabal.in/visuals/kmeans/3.html' ></iframe>
-
-```{r, echo = FALSE}
-htmltools::includeHTML("https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html")
-```
+![](tab/final_tab.png)
 
