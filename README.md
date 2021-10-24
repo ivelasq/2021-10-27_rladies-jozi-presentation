@@ -44,5 +44,5 @@ login)](https://rstudio.cloud/project/3093601)
 -   [gtExtra](https://jthomasmock.github.io/gtExtras/)
 -   [gtsummary](https://cran.r-project.org/web/packages/gtsummary/vignettes/rmarkdown.html)
 
-<iframe src="./tab/final_tab.html" width="100%" height="100%">
+<iframe src="https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html" width="100%" height="100%">
 </iframe>
