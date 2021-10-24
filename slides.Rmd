@@ -343,9 +343,6 @@ class: inverse, center
 
 --
 
-
-
-
-
+Slides made with [xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html) `r emo::ji("yes")`
 
 
