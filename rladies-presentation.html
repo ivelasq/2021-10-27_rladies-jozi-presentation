@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Around the World in a Single Table</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Isabella Velásquez" />
+    <meta name="date" content="2021-10-27" />
+    <script src="libs/header-attrs-2.8/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <meta name="github-repo" content="ivelasq/"/>
+    <meta name="twitter:title" content="Around the World in a Single Table"/>
+    <meta name="twitter:description" content="Slides for R-Ladies Johannesburg Presentation"/>
+    <meta name="twitter:url" content="https://github.com/kdillmcfarland/2021-04-02-r-ladies-seattle-online/"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@ivelasq3"/>
+    <meta name="twitter:site" content="@ivelasq3"/>
+    <meta property="og:title" content="Around the World in a Single Table"/>
+    <meta property="og:description" content="Slides for R-Ladies Johannesburg Presentation"/>
+    <meta property="og:url" content="https://github.com/kdillmcfarland/2021-04-02-r-ladies-seattle-online/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Isabella Velásquez"/>
+    <script src="libs/twitter-widget-0.0.1/widgets.js"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/font.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: title-slide, left, bottom, inverse
+background-image: url(img/cover.jpg)
+background-size: cover
+
+.pull-left[
+# Around the World in a Single Table
+### Isabella Velásquez
+### R-Ladies Johannesburg
+### October 27, 2021
+]
+
+.palegrey[.right[.footnote[Photo by &lt;a href="https://unsplash.com/@m_xthree?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Maximilian Meyer&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/hot-air-balloon?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;]]]
+---
+
+# About Me
+
+### Isabella Velásquez
+* Sr. Product Marketing Manager, RStudio
+* Website: ivelasq.rbind.io
+* Twitter: @ivelasq3
+* Github: @ivelasq
+* LinkedIn: @ivelasq
+
+.pull-right[
+![](img/me.jpg)
+]
+
+---
+class: inverse
+
+# Agenda
+
+.pull-left-narrow[.center[
+&lt;img src="./img/balloon.png" width="100px"/&gt;]]
+.pull-right-wide[### Introduce tables]
+--
+.pull-left-narrow[.center[
+&lt;img src="./img/balloon.png" width="100px"/&gt;]]
+.pull-right-wide[### Table principles]
+--
+.pull-left-narrow[.center[
+&lt;img src="./img/balloon.png" width="100px"/&gt;]]
+.pull-right-wide[### The {gt} package]
+
+---
+
+# 2021 RStudio Table Contest
+
+**Closing date: November 15th**
+
+https://blog.rstudio.com/2021/09/30/rstudio-table-contest-2021/
+
+![](img/contest.jpg)
+
+---
+class: center
+# What is a table?
+
+--
+
+![](img/table.jpg)
+
+.palegrey[.left[.footnote[Photo: Wikipedia]]]
+
+---
+# Examples of tables
+
+.panelset[
+.panel[.panel-name[Spreadsheet]
+
+![](img/spreadsheet.png)
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+]
+
+.panel[.panel-name[Relational Table]
+
+&lt;center&gt;&lt;img src="./img/relational.png" width="400px"/&gt;&lt;/center&gt;
+
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+]
+
+.panel[.panel-name[Console Table]
+
+
+```r
+# install.packages("devtools")
+# devtools::install_github("gvelasq/tidytab")
+
+tidytab::tab(mtcars, cyl)
+```
+
+```
+##         cyl │      Freq.     Percent        Cum. 
+## ────────────┼───────────────────────────────────
+##           4 │         11        34.4        34.4 
+##           6 │          7        21.9        56.3 
+##           8 │         14        43.8       100.0 
+## ────────────┼───────────────────────────────────
+##       Total │         32       100.0           
+```
+
+.palegrey[.right[.footnote[Source: tidytab, @gvelasq]]]
+]
+]
+
+---
+class: center
+
+# How is a table like a table?
+
+--
+
+.panelset[
+.panel[.panel-name[Table 1]
+
+![](img/table1.jpg)
+]
+
+.panel[.panel-name[Table 2]
+![](img/table2.jpg)
+]
+
+.panel[.panel-name[Table 3]
+![](img/table3.jpg)
+]
+]
+
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+
+---
+# Table visualization
+![](img/table_viz.png)
+.palegrey[.footnote[Source: R for the Rest of Us]]
+
+---
+class: title, center
+
+# Imagine...
+![](img/balloon.png)
+
+---
+background-image: url(img/airport.jpg)
+background-size: cover
+
+.palegrey[.right[.footnote[Source: Photo by &lt;a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;CHUTTERSNAP&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;]]]
+
+---
+add photo here
+---
+class:center
+
+![](img/question.png)
+
+---
+
+add photo here
+
+---
+
+.pull-left[
+
+# Charts
+
+.left[
+
+&lt;img src="./img/chart1.png" width="300px"/&gt;
+
+* Abstraction
+* Trends
+* Distributions
+
+]
+]
+
+--
+
+.pull-right[
+
+# Tables
+
+.left[
+&lt;img src="./img/table4.jpg" width="300px"/&gt;
+
+* Specific information
+* Compare values
+* Qualitative data
+* Multiple dimensions
+
+]
+]
+
+---
+
+.pull-left[
+<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">This is mostly @ myself, but just in case anyone else needs to hear this:<br><br>That complicated data visualization you’ve been working on/crying over, you should consider instead making a table.</p>&mdash; Ijeamaka A (@ijeamaka_a) <a href="https://twitter.com/ijeamaka_a/status/1420126677091323906?ref_src=twsrc%5Etfw">July 27, 2021</a></blockquote>
+
+]
+
+.pull-right[
+## Questions to consider
+
+* Patterns or individual points?
+* Comparing values?
+* Time?
+* Sorting?
+* Qualitative data?
+]
+
+---
+background-image: url(img/airport.jpg)
+background-size: cover
+
+.palegrey[.right[.footnote[Source: Photo by &lt;a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;CHUTTERSNAP&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;]]]
+
+---
+class: inverse, center
+
+# Why not both?
+
+![](img/girl.jpg)
+
+---
+# Tables and charts combined
+
+.panelset[
+.panel[.panel-name[Example 1]
+
+![](img/tabchart1.png)
+
+.palegrey[.right[.footnote[Source: Daniel Sjoberg]]]
+]
+
+.panel[.panel-name[Example 2]
+
+&lt;img src="./img/tabchart2.png" height="400px"/&gt;
+
+
+.palegrey[.right[.footnote[Source: NYTimes]]]
+]
+
+.panel[.panel-name[Example 3]
+
+&lt;img src="./img/table3.png" height="400px"/&gt;
+
+.palegrey[.right[.footnote[Source: Edward Tufte]]]
+]
+]
+
+---
+class: center
+# Another example
+
+“I saw in a dream, a table, where all the elements fell into place as required. Awakening, I immediately wrote it down on a piece of paper.”
+
+![](img/periodic.png)
+
+---
+class: center
+background-color: #2A326D
+
+# What makes a good table?
+
+---
+.pull-left[
+
+* Offset the Heads from the Body
+* Use Subtle Dividers Rather Than Heavy Gridlines
+* Right-Align Numbers and Heads
+* Left-Align Text and Heads
+* Select the Appropriate Level of Precision
+* Guide Your Reader with Space between Rows and Columns
+* Remove Unit Repetition
+* Highlight Outliers
+* Group Similar Data and Increase White Space
+* Add Visualizations When Appropriate
+
+]
+
+.pull-right[
+<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">I recently published &quot;Ten Guidelines for Better Tables&quot; in the Journal of Benefit Cost Analysis (<a href="https://twitter.com/benefitcost?ref_src=twsrc%5Etfw">@benefitcost</a>) on ways to improve your data tables. <br><br>Here&#39;s a thread summarizing the 10 guidelines. <br><br>Full paper is here: <a href="https://t.co/VSGYnfg7iP">https://t.co/VSGYnfg7iP</a> <a href="https://t.co/W6qbsktioL">pic.twitter.com/W6qbsktioL</a></p>&mdash; Jon Schwabish (@jschwabish) <a href="https://twitter.com/jschwabish/status/1290323581881266177?ref_src=twsrc%5Etfw">August 3, 2020</a></blockquote>
+
+
+]
+
+---
+class: center
+
+# Learn from others
+
+![](img/contest1.png)
+
+---
+class: inverse, center
+
+# Let's make a table!
+
+--
+
+
+---
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

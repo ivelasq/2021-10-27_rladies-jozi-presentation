@@ -1,0 +1,355 @@
+---
+title: "Around the World in a Single Table"
+author: "Isabella Velásquez"
+institute: "R-Ladies Johannesburg"
+date: "October 27, 2021"
+output:
+  xaringan::moon_reader:
+    css: 
+      - default
+      - css/style.css 
+      - css/font.css
+    lib_dir: libs
+    seal: false
+  nature:
+    highlightStyle: tomorrow-night
+    highlightLines: true
+    highlightLanguage: ["r"]
+    countIncrementalSlides: false
+    ratio: "16:9"
+    beforeInit: "macros.js"
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(xaringanExtra)
+library(tweetrmd)
+
+# set default options
+opts_chunk$set(fig.width = 7.252,
+               fig.height = 4,
+               dpi = 300)
+xaringanExtra::use_panelset()
+xaringanExtra::use_tile_view()
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+  meta_name("github-repo" = "ivelasq/") %>% 
+  meta_social(
+    title = "Around the World in a Single Table",
+    description = paste(
+      "Slides for R-Ladies Johannesburg Presentation"
+    ),
+    url = "https://github.com/kdillmcfarland/2021-04-02-r-ladies-seattle-online/",
+    og_type = "website",
+    og_author = "Isabella Velásquez",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@ivelasq3",
+    twitter_site = "@ivelasq3"
+  )
+```
+
+class: title-slide, left, bottom, inverse
+background-image: url(img/cover.jpg)
+background-size: cover
+
+.pull-left[
+# `r rmarkdown::metadata$title`
+### `r rmarkdown::metadata$author`
+### `r rmarkdown::metadata$institute`
+### `r rmarkdown::metadata$date`
+]
+
+.palegrey[.right[.footnote[Photo by <a href="https://unsplash.com/@m_xthree?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maximilian Meyer</a> on <a href="https://unsplash.com/s/photos/hot-air-balloon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
+---
+
+# About Me
+
+### Isabella Velásquez
+* Sr. Product Marketing Manager, RStudio
+* Website: ivelasq.rbind.io
+* Twitter: @ivelasq3
+* Github: @ivelasq
+* LinkedIn: @ivelasq
+
+.pull-right[
+![](img/me.jpg)
+]
+
+---
+class: inverse
+
+# Agenda
+
+.pull-left-narrow[.center[
+<img src="./img/balloon.png" width="100px"/>]]
+.pull-right-wide[### Introduce tables]
+--
+.pull-left-narrow[.center[
+<img src="./img/balloon.png" width="100px"/>]]
+.pull-right-wide[### Table principles]
+--
+.pull-left-narrow[.center[
+<img src="./img/balloon.png" width="100px"/>]]
+.pull-right-wide[### The {gt} package]
+
+---
+
+# 2021 RStudio Table Contest
+
+**Closing date: November 15th**
+
+https://blog.rstudio.com/2021/09/30/rstudio-table-contest-2021/
+
+![](img/contest.jpg)
+
+---
+class: center
+# What is a table?
+
+--
+
+![](img/table.jpg)
+
+.palegrey[.left[.footnote[Photo: Wikipedia]]]
+
+---
+# Examples of tables
+
+.panelset[
+.panel[.panel-name[Spreadsheet]
+
+![](img/spreadsheet.png)
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+]
+
+.panel[.panel-name[Relational Table]
+
+<center><img src="./img/relational.png" width="400px"/></center>
+
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+]
+
+.panel[.panel-name[Console Table]
+
+```{r}
+# install.packages("devtools")
+# devtools::install_github("gvelasq/tidytab")
+
+tidytab::tab(mtcars, cyl)
+```
+
+.palegrey[.right[.footnote[Source: tidytab, @gvelasq]]]
+]
+]
+
+---
+class: center
+
+# How is a table like a table?
+
+--
+
+.panelset[
+.panel[.panel-name[Table 1]
+
+![](img/table1.jpg)
+]
+
+.panel[.panel-name[Table 2]
+![](img/table2.jpg)
+]
+
+.panel[.panel-name[Table 3]
+![](img/table3.jpg)
+]
+]
+
+.palegrey[.right[.footnote[Photo: Wikipedia]]]
+
+---
+# Table visualization
+![](img/table_viz.png)
+.palegrey[.footnote[Source: R for the Rest of Us]]
+
+---
+class: title, center
+
+# Imagine...
+![](img/balloon.png)
+
+---
+background-image: url(img/airport.jpg)
+background-size: cover
+
+.palegrey[.right[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
+
+---
+add photo here
+---
+class:center
+
+![](img/question.png)
+
+---
+
+add photo here
+
+---
+
+.pull-left[
+
+# Charts
+
+.left[
+
+<img src="./img/chart1.png" height="200px"/>
+
+* Abstraction
+* Trends
+* Distributions
+
+]
+]
+
+--
+
+.pull-right[
+
+# Tables
+
+.left[
+<img src="./img/table4.jpg" height="200px"/>
+
+* Specific information
+* Compare values
+* Qualitative data
+* Multiple dimensions
+
+]
+]
+
+---
+
+.pull-left[
+```{r, echo=FALSE}
+tweet_embed("https://twitter.com/ijeamaka_a/status/1420126677091323906")
+```
+]
+
+.pull-right[
+## Questions to consider
+
+* Patterns or individual points?
+* Comparing values?
+* Time?
+* Sorting?
+* Qualitative data?
+]
+
+---
+background-image: url(img/airport.jpg)
+background-size: cover
+
+.palegrey[.right[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
+
+---
+class: inverse, center
+
+![](img/girl.jpg)
+
+---
+# Tables and charts combined
+
+.panelset[
+.panel[.panel-name[Example 1]
+
+![](img/tabchart1.png)
+
+.palegrey[.right[.footnote[Source: Daniel Sjoberg]]]
+]
+
+.panel[.panel-name[Example 2]
+
+<center><img src="./img/tabchart2.png" height="400px"/></center>
+
+
+.palegrey[.right[.footnote[Source: NYTimes]]]
+]
+
+.panel[.panel-name[Example 3]
+
+<center><img src="./img/tabchart3.png" height="400px"/></center>
+
+.palegrey[.right[.footnote[Source: Edward Tufte]]]
+]
+]
+
+---
+class: center
+# In conclusion
+
+“I saw in a dream, a table, where all the elements fell into place as required. Awakening, I immediately wrote it down on a piece of paper.”
+
+![](img/periodic.png)
+
+---
+class: center, inverse
+background-color: #2A326D
+
+# What makes a good table?
+
+---
+# Guidelines to consider
+
+.pull-left[
+
+* Offset the Heads from the Body
+* Use Subtle Dividers Rather Than Heavy Gridlines
+* Right-Align Numbers and Heads
+* Left-Align Text and Heads
+* Select the Appropriate Level of Precision
+* Guide Your Reader with Space between Rows and Columns
+* Remove Unit Repetition
+* Highlight Outliers
+* Group Similar Data and Increase White Space
+* Add Visualizations When Appropriate
+
+]
+
+.pull-right[
+```{r, echo=FALSE}
+tweet_embed("https://twitter.com/jschwabish/status/1290323581881266177")
+```
+
+]
+
+---
+class: center
+
+# Learn from what you like
+
+![](img/contest1.png)
+
+.palegrey[.right[.footnote[Source: Niels van der Velden]]]
+
+---
+class: inverse, center
+
+# Let's make a table!
+
+--
+
+
+---
+
+
+
+
+
+
+
+
