@@ -23,7 +23,7 @@ I will be discussing tables as a format for communicating information and walkin
 
 `r emo::ji("computer")` [RStudio Cloud (requires login)](https://rstudio.cloud/project/3093601)
 
-`r emo::ji("world")` [Final Table] (https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
+`r emo::ji("world")` [Final Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 
 `r emo::ji("link")` Links mentioned in talk:
 
@@ -40,7 +40,7 @@ I will be discussing tables as a format for communicating information and walkin
 * [ALL the table options!](https://gt.rstudio.com/reference/tab_options.html)
 * [GT Cookbook by Thomas Mock](https://themockup.blog/static/gt-cookbook.html#Introduction)
 * [Advanced Usage by Thomas Mock]( https://themockup.blog/static/gt-cookbook-advanced.html)
-* [Beautiful tables in R]( https://themockup.blog/static/slides/intro-tables.html#1)
+* [Beautiful tables in R: gt and the grammar of tables]( https://themockup.blog/static/slides/intro-tables.html#1)
 * [gtExtra](https://jthomasmock.github.io/gtExtras/)
 * [gtsummary](https://cran.r-project.org/web/packages/gtsummary/vignettes/rmarkdown.html)
 

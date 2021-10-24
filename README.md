@@ -17,8 +17,8 @@ Page](https://www.meetup.com/rladies-johannesburg/events/281522272/)
 💻 [RStudio Cloud (requires
 login)](https://rstudio.cloud/project/3093601)
 
-🌏 \[Final Table\]
-(<https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html>)
+🌎 [Final
+Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 
 🔗 Links mentioned in talk:
 
@@ -42,8 +42,8 @@ login)](https://rstudio.cloud/project/3093601)
     Mock](https://themockup.blog/static/gt-cookbook.html#Introduction)
 -   [Advanced Usage by Thomas
     Mock](https://themockup.blog/static/gt-cookbook-advanced.html)
--   [Beautiful tables in
-    R](https://themockup.blog/static/slides/intro-tables.html#1)
+-   [Beautiful tables in R: gt and the grammar of
+    tables](https://themockup.blog/static/slides/intro-tables.html#1)
 -   [gtExtra](https://jthomasmock.github.io/gtExtras/)
 -   [gtsummary](https://cran.r-project.org/web/packages/gtsummary/vignettes/rmarkdown.html)
 
