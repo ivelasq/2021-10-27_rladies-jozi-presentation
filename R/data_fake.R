@@ -1,5 +1,14 @@
+# Add fake data to real OpenFlights data
+
+# Libraries
+library(tidyverse)
+library(hms)
+library(lubridate)
+
 # Data
-source("R/data_source.R")
+
+df_routes_def <-
+  read_csv(here::here("data", "df_routes_def.csv"))
 
 # Create fake data --------------------------------------------------------
 
@@ -9,7 +18,7 @@ set.seed(2021)
 x <-
   seq(as.POSIXct('2021/10/27'), as.POSIXct('2021/10/28'), by = "1 mins") # create random sequence
 
-# Create dataset for plot
+# Create dataset for table
 
 df_routes_jozi <-
   df_routes_def %>%
@@ -31,21 +40,21 @@ df_routes_jozi <-
       replace = TRUE
     ),
     delayed_time = as_hms(
-      sample(x[hour(x) > "13:00" & hour(x) < "21:00"],
+      sample(x[hour(x) > "16:00" & hour(x) < "21:00"],
              n(),
              replace = TRUE)
     ),
     time_before_depart = delayed_time - 9,
-    delayed_time = str_sub(as.character(
+    delayed_time = case_when(status == "Delayed" ~ paste0("Now ", str_sub(as.character(
       delayed_time
-    )),
+    ), end = -4)),
+    TRUE ~ "")
+    ,
     time_before_depart = as.numeric(time_before_depart),
     time_before_depart = case_when(status == "Canceled" ~ 0,
                                    TRUE ~ time_before_depart),
-    # status = case_when(
-    #   status1 == "Delayed" ~ paste0("Delayed (now ", delayed_time, ")"),
-    #   TRUE ~ status1
-    # )
   ) %>%
   select(-airline,-air_no) %>%
   filter(!is.na(city.y))
+
+write_csv(df_routes_jozi, here::here("data", "df_routes_jozi.csv"))

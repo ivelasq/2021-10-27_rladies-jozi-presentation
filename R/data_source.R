@@ -1,10 +1,12 @@
+# OpenFlights Data
 # Tutorial: https://franciscorequena.com/post/exploring-world-airline-network/
 # This code is completely from the tutorial -------------------------------
 
 # Libraries ---------------------------------------------------------------
 install.packages("pacman")
 
-pacman::p_load(tidygraph, ggraph, igraph, tidyverse, patchwork, ggthemes, lubridate, hms)
+pacman::p_load(tidygraph, maps, ggraph, igraph, tidyverse, patchwork, ggthemes, lubridate, hms)
+
 # Data --------------------------------------------------------------------
 
 worldmap <- borders("world", colour="#efede1", fill="#efede1") 
@@ -64,3 +66,5 @@ df_routes_def <- df_routes %>%
   rename(long_dest = long, lat_dest = lat) %>%
   left_join(df_nodes, by = c('src' = 'name')) %>%
   select(-lat, -long)
+
+write_csv(df_routes_def, here::here("data", "df_routes_def.csv"))

@@ -1,0 +1,571 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+# Install if not already installed
+# install.packages("tidyverse")
+# install.packages("gt")
+# remotes::install_github("jthomasmock/gtExtras")
+
+# Load libraries
+library(tidyverse)
+library(gt)
+library(gtExtras)
+```
+
+```{r load-data, include=FALSE, message=FALSE}
+df_routes_jozi <-
+  read_csv(here::here("data", "df_routes_jozi.csv"))
+```
+
+```{r}
+head(df_routes_jozi)
+```
+# Clean data
+
+```{r}
+j1 <-
+  df_routes_jozi %>%
+  select(city.y,
+         dest,
+         flight_no,
+         terminal,
+         gate,
+         depart_time,
+         status,
+         delayed_time,
+         time_before_depart) %>%
+  arrange(city.y)
+```
+
+# Create gt_tbl object
+
+```{r}
+j1 %>% 
+  gt() # Create gt_tbl object
+```
+
+# Add title and subtitle
+
+```{r}
+j1 %>% 
+  gt() %>% # Create gt_tbl object
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("Departures") # Add subtitle
+  ) 
+```
+
+# Add HTML
+
+```{r}
+j1 %>% 
+  gt() %>% # Create gt_tbl object
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) 
+```
+
+# Add sections
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  )
+```
+
+# Add spanner
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col())
+```
+
+# Add source note
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 9:00:00 UTC + 2")  # Add source note
+```
+
+# Edit column headers
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  )
+```
+
+# Align Terminal to the right
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align status to the right
+             columns = "status")
+```
+
+# Edit cell styles
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  )
+```
+
+# Stack columns
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) # Stack columns from gtExtras
+```
+
+# Stack some more columns
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) %>% # Stack columns from gtExtras
+  gt_merge_stack(col1 = status, col2 = delayed_time)
+```
+
+# Add bar chart
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) %>% # Stack columns from gtExtras
+  gt_merge_stack(col1 = status, col2 = delayed_time) %>% 
+  gt_plt_bar_pct( # Create bar chart from gtExtras
+    column = time_before_depart,
+    scaled = FALSE,
+    fill = "#D90707",
+    background = "#DABD8F"
+  ) 
+```
+
+# Edit table options
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) %>% # Stack columns from gtExtras
+  gt_merge_stack(col1 = status, col2 = delayed_time) %>% 
+  gt_plt_bar_pct( # Create bar chart from gtExtras
+    column = time_before_depart,
+    scaled = FALSE,
+    fill = "#D90707",
+    background = "#DABD8F"
+  ) %>% 
+  tab_options( # Edit table options
+    table.width = px(1000)
+  ) 
+```
+
+# Finish styling
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) %>% # Stack columns from gtExtras
+  gt_merge_stack(col1 = status, col2 = delayed_time) %>% 
+  gt_plt_bar_pct( # Create bar chart from gtExtras
+    column = time_before_depart,
+    scaled = FALSE,
+    fill = "#D90707",
+    background = "#DABD8F"
+  ) %>% 
+  tab_options( # Edit table options
+    table.width = px(800),
+    heading.background.color = "#2A326D",
+    column_labels.background.color = "#F4CF0D",
+    column_labels.font.weight = "bold",
+    stub.background.color = "#F4CF0D",
+    stub.font.weight = "bold"
+  ) %>%
+  tab_style(style = list(cell_fill(color = "#fff8e7")), # Add additional styling
+            locations = cells_body()) %>%
+  tab_style(style = list(cell_borders(
+    sides = "left",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_body(columns = 'flight_no'))) %>%
+  tab_style(style = list(cell_borders(
+    sides = "bottom",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_column_labels(columns = gt::everything())))
+```
+
+```{r}
+j1 %>% 
+  mutate(page = ntile(city.y, 3)) %>% # Breaks up table into three sections of equal length
+  gt(groupname_col = "page") %>% # Create gt_tbl object with groups
+  tab_header(
+    title = "O. R. Tambo International Airport", # Add title
+    subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
+  ) %>% 
+   tab_spanner(label = "You are in Terminal A", # Add table spanner
+              columns = 4:last_col()) %>% 
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% # Add source note
+  cols_label( # Edit column headers
+    city.y = "To",
+    dest = "Code",
+    flight_no = "Flight",
+    terminal = "Terminal",
+    gate = "Gate",
+    depart_time = "Original Time",
+    status = "Status",
+    delayed_time = "Delayed Time",
+    time_before_depart = "Time Before Departure"
+  ) %>% 
+  cols_align(align = "right", # Align terminal to the right
+             columns = "terminal") %>% 
+  tab_style( # Add colors conditionally to cells
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
+  tab_style(
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
+  gt_merge_stack(col1 = city.y, col2 = dest) %>% # Stack columns from gtExtras
+  gt_merge_stack(col1 = status, col2 = delayed_time) %>% 
+  gt_plt_bar_pct( # Create bar chart from gtExtras
+    column = time_before_depart,
+    scaled = FALSE,
+    fill = "#D90707",
+    background = "#DABD8F"
+  ) %>% 
+  tab_options( # Edit table options
+    table.width = px(800),
+    heading.background.color = "#2A326D",
+    column_labels.background.color = "#F4CF0D",
+    column_labels.font.weight = "bold",
+    stub.background.color = "#F4CF0D",
+    stub.font.weight = "bold"
+  ) %>%
+  tab_style(style = list(cell_fill(color = "#fff8e7")), # Add additional styling
+            locations = cells_body()) %>%
+  tab_style(style = list(cell_borders(
+    sides = "left",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_body(columns = 'flight_no'))) %>%
+  tab_style(style = list(cell_borders(
+    sides = "bottom",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_column_labels(columns = gt::everything()))) %>% 
+  gtsave(here::here("tab", "final_tab.html")) # Save the table
+```
+
+

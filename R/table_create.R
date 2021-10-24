@@ -1,10 +1,13 @@
+# Creating gt table
+
 # Libraries
 
-pacman::p_load(gt)
+pacman::p_load(tidyverse, gt)
 pacman::p_load_gh("jthomasmock/gtExtras")
 
 # Data
-source("R/data_fake.R")
+df_routes_jozi <-
+  read_csv(here::here("data", "df_routes_jozi.csv"))
 
 head(df_routes_jozi)
 
@@ -17,14 +20,17 @@ j1 <-
          gate,
          depart_time,
          status,
+         delayed_time,
          time_before_depart) %>%
   arrange(city.y)
 
-j1 %>% 
-  mutate(page = ntile(city.y, 3)) %>% 
-  gt(groupname_col = "page") %>% 
-  tab_header(title = "O. R. Tambo International Airport",
-             subtitle = html("<font size=6><strong>Departures</strong></font>")) %>% 
+j1 %>%
+  mutate(page = ntile(city.y, 3)) %>%
+  gt(groupname_col = "page") %>%
+  tab_header(
+    title = "O. R. Tambo International Airport",
+    subtitle = html("<font size=6><strong>Departures</strong></font>")
+  ) %>%
   cols_label(
     city.y = "To",
     dest = "Code",
@@ -33,45 +39,40 @@ j1 %>%
     gate = "Gate",
     depart_time = "Original Time",
     status = "Status",
+    delayed_time = "Delayed Time",
     time_before_depart = "Time Before Departure"
-  ) %>% 
+  ) %>%
   tab_spanner(label = "You are in Terminal A",
-                columns = 4:last_col()) %>% 
-  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>% 
-  gt_plt_bar_pct(column = time_before_depart,
-                 scaled = FALSE,
-                 fill = "#D90707",
-                 background = "#DABD8F") %>%
+              columns = 4:last_col()) %>%
+  tab_source_note("Thursday, October 27th, 2021 6:00:00 UTC + 2") %>%
+  gt_merge_stack(col1 = city.y, col2 = dest) %>%
+  gt_merge_stack(col1 = status, col2 = delayed_time) %>%
+  gt_plt_bar_pct(
+    column = time_before_depart,
+    scaled = FALSE,
+    fill = "#D90707",
+    background = "#DABD8F"
+  ) %>%
   cols_align(align = "right",
-             columns = "depart_time") %>%
+             columns = "terminal") %>%
   tab_style(
-    style = list(
-      cell_text(weight = "bold",
-                color = "red")
-    ),
-    locations = cells_body(
-      columns = status,
-      rows = status == "Canceled"
-    )) %>% 
+    style = list(cell_text(weight = "bold",
+                           color = "#D55E00")),
+    locations = cells_body(columns = terminal,
+                           rows = str_detect(terminal, "A"))
+  ) %>%
   tab_style(
-    style = list(
-      cell_text(weight = "bold",
-                color = "orange")
-    ),
-    locations = cells_body(
-      columns = status,
-      rows = str_detect(status, "Delayed")
-    )) %>% 
+    style = list(cell_text(weight = "bold",
+                           color = "#0072B2")),
+    locations = cells_body(columns = gate,
+                           rows = terminal == "A")
+  ) %>%
   tab_style(
-    style = list(
-      cell_text(weight = "bold",
-                color = "green")
-    ),
-    locations = cells_body(
-      columns = status,
-      rows = str_detect(status, "On Time")
-    )) %>% 
-  gt_merge_stack(col1 = city.y, col2 = dest) %>% 
+    style = list(cell_text(weight = "bold",
+                           color = "#3A3B3C")),
+    locations = cells_body(columns = c("gate", "terminal"),
+                           rows = terminal != "A")
+  ) %>% 
   # Code from https://aniruhil.org/posts/2021-02-08-more-with-gt-tables/
   tab_options(
     table.width = px(800),
@@ -80,40 +81,18 @@ j1 %>%
     column_labels.font.weight = "bold",
     stub.background.color = "#F4CF0D",
     stub.font.weight = "bold"
-  ) %>% 
-  tab_style(
-    style = list(
-      cell_fill(color = "#fff8e7")
-    ),
-    locations = cells_body(
-    )    
-  ) %>% 
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "left",
-        color = "white",
-        weight = px(6)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = 'flight_no'
-      )
-    )
   ) %>%
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "bottom",
-        color = "white",
-        weight = px(6)
-      )
-    ),
-    locations = list(
-      cells_column_labels(
-        columns = gt::everything()
-      )
-    )
-  )
-
+  tab_style(style = list(cell_fill(color = "#fff8e7")),
+            locations = cells_body()) %>%
+  tab_style(style = list(cell_borders(
+    sides = "left",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_body(columns = 'flight_no'))) %>%
+  tab_style(style = list(cell_borders(
+    sides = "bottom",
+    color = "white",
+    weight = px(6)
+  )),
+  locations = list(cells_column_labels(columns = gt::everything())))
