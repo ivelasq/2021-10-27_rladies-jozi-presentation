@@ -42,7 +42,4 @@ I will be discussing tables as a format for communicating information and walkin
 * [gtExtra](https://jthomasmock.github.io/gtExtras/)
 * [gtsummary](https://cran.r-project.org/web/packages/gtsummary/vignettes/rmarkdown.html)
 
-```{r, echo = FALSE}
-htmltools::includeHTML(here::here("tab", "final_tab.html"))
-```
-
+<iframe src='./tab/final_tab.html' width="100%" height="100%"></iframe>
