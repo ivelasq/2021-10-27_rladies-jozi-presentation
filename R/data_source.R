@@ -2,17 +2,9 @@
 # This code is completely from the tutorial -------------------------------
 
 # Libraries ---------------------------------------------------------------
+install.packages("pacman")
 
-library(tidygraph) 
-library(ggraph)
-library(igraph)
-library(stringr)
-library(tidyverse)
-library(patchwork)
-library(ggthemes)
-library(lubridate)
-library(hms)
-
+pacman::p_load(tidygraph, ggraph, igraph, tidyverse, patchwork, ggthemes, lubridate, hms)
 # Data --------------------------------------------------------------------
 
 worldmap <- borders("world", colour="#efede1", fill="#efede1") 

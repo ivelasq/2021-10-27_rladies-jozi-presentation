@@ -1,7 +1,7 @@
 # Libraries
-library(gt)
-# remotes::install_github("jthomasmock/gtExtras")
-library(gtExtras)
+
+pacman::p_load(gt)
+pacman::p_load_gh("jthomasmock/gtExtras")
 
 # Data
 source("R/data_fake.R")
