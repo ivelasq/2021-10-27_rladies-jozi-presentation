@@ -176,7 +176,7 @@ class: center
 .palegrey[.footnote[Source: R for the Rest of Us]]
 
 ---
-class: title, center
+class: title, center, inverse
 
 # Imagine...
 ![](img/balloon.png)
@@ -188,7 +188,7 @@ background-size: cover
 .palegrey[.right[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
 
 ---
-add photo here
+![](img/worldmap.png)
 ---
 class:center
 
@@ -196,7 +196,7 @@ class:center
 
 ---
 
-add photo here
+![](img/worldmap.png)
 
 ---
 
@@ -225,7 +225,7 @@ add photo here
 <img src="./img/table4.jpg" height="200px"/>
 
 * Specific information
-* Compare values
+* Exact comparison
 * Qualitative data
 * Multiple dimensions
 

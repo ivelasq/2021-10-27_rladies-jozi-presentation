@@ -1,5 +1,5 @@
 # Data
-source("R/data_fake.R")
+source("R/data_source.R")
 
 # Map for presentation ----------------------------------------------------
 
@@ -16,9 +16,10 @@ df_routes_jozi <-
   mutate(depart_time = as.factor(as_hms(sample(x[hour(x) > "09:00" & hour(x) < "17:00"],
                                                n(),
                                                replace = TRUE))),
-         gate = as.factor(sample(1:20, n(), replace = TRUE)))
+         gate = sample(1:20, n(), replace = TRUE))
 
-ggplot(df_routes_jozi) +
+df_routes_jozi %>% 
+  ggplot() +
   worldmap +
   coord_map("gilbert", xlim = c(-180,180)) +
   geom_segment(aes(x = long_src,
@@ -27,9 +28,12 @@ ggplot(df_routes_jozi) +
                    yend = lat_dest,
                    color = depart_time),
                alpha = 0.3) +
-  geom_point(aes(x = long_dest,
-                 y = lat_dest,
-                 fill = gate)) +
   theme_map() +
+  geom_text(aes(label = gate,
+                 x = long_dest,
+                 y = lat_dest),
+             alpha = 0.6) +
   ggtitle('O.R. Tambo International Airport connections') +
   theme(legend.position = 'bottom')
+
+ggsave(here::here("img", "worldmap.png"), device = "png")

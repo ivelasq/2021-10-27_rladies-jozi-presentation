@@ -1,0 +1,26 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(emo)
+```
+
+# Around the World in a Single Table
+## 2021-10-27 R-Ladies Johannesburg Presentation
+
+I will be discussing tables as a format for communicating information and walking through creating a table in R using the {gt} package.
+
+`r emo::ji("calendar")`[Event Page](https://www.meetup.com/rladies-johannesburg/events/281522272/)
+
+`r emo::ji("memo")`[Presentation](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/slides.html)
+
+`r emo::ji("computer")`RStudio Cloud
+
+`r emo::ji("link")`Links mentioned in talk:
