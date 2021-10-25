@@ -121,9 +121,9 @@ a:hover {
   
   /*-- Slide background and text (inverse) --*/
   .inverse {
-    background-color:   #F4CF0D;
-      color:              #FFFFFF;
-      text-shadow:        none;
+    background-color:   #2A326D;
+      color:            #FFFFFF;
+      text-shadow:      none;
   }
 
 /*-- Headings (inverse) --*/
