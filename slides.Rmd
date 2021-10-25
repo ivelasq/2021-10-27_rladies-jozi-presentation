@@ -76,7 +76,7 @@ background-size: cover
 * LinkedIn: @ivelasq
 
 .pull-right[
-![](img/me.jpg)
+![](img/balloon.png)
 ]
 
 ---
@@ -195,7 +195,7 @@ class: title, center, inverse
 background-image: url(img/airport.jpg)
 background-size: cover
 
-.palegrey[.right[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
+.palegrey[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]
 
 ---
 ![](img/worldmap.png)
@@ -209,6 +209,8 @@ class:center
 ![](img/worldmap.png)
 
 ---
+
+.palegrey[.left[.footnote[Photos: Wikipedia]]]
 
 .pull-left[
 
@@ -243,6 +245,7 @@ class:center
 ]
 
 ---
+class: middle
 
 .pull-left[
 ```{r, echo=FALSE}
@@ -253,21 +256,22 @@ tweet_embed("https://twitter.com/ijeamaka_a/status/1420126677091323906")
 .pull-right[
 ## Questions to consider
 
-* Patterns or individual points?
-* Comparing values?
-* Time?
-* Sorting?
-* Qualitative data?
+* Are you looking for patterns or finding precise values?
+* Will you be comparing two sets of values?
+* How many dimensions does your data have?
+* How much time will readers have to review?
+* Do you want readers to be able to search and filter for exact values?
+* Will you be showing qualitative data?
 ]
 
 ---
 background-image: url(img/airport.jpg)
 background-size: cover
 
-.palegrey[.right[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]]
+.palegrey[.footnote[Source: Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/airport-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>]]
 
 ---
-class: inverse, center
+class: inverse, center, middle
 
 ![](img/girl.jpg)
 
@@ -306,8 +310,10 @@ class: center
 
 ![](img/periodic.png)
 
+.footnote[Photo: Wikipedia]]
+
 ---
-class: center, inverse
+class: center, inverse, middle
 
 # What makes a good table?
 
@@ -346,12 +352,13 @@ class: center
 .palegrey[.right[.footnote[Source: Niels van der Velden]]]
 
 ---
-class: inverse, center
+class: inverse, center, middle
 
 # Let's make a table!
 
---
+---
+class: center, middle
 
-Slides made with [xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html) `r emo::ji("yes")`
+Slides made with [xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html) `r emo::ji("thumbsup")`
 
 
