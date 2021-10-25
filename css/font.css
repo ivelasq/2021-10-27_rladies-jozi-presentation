@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 
 .remark-code, .remark-inline-code {
-  font-family: 'Inconsolata', 'Quattrocento', monospace;
+  font-family: 'Monaco', monospace;
 }
 
 h1 {
