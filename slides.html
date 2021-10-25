@@ -121,12 +121,12 @@ class: center
 
 
 ```r
-# install.packages("devtools")
-# devtools::install_github("gvelasq/tidytab")
+# install.packages("remotes")
+# remotes::install_github("gvelasq/tidytab")
+library(tidytab)
 
-tidytab::tab(mtcars, cyl)
+mtcars %&gt;% tab(cyl)
 ```
-
 ```
 ##         cyl │      Freq.     Percent        Cum. 
 ## ────────────┼───────────────────────────────────
@@ -134,7 +134,7 @@ tidytab::tab(mtcars, cyl)
 ##           6 │          7        21.9        56.3 
 ##           8 │         14        43.8       100.0 
 ## ────────────┼───────────────────────────────────
-##       Total │         32       100.0           
+##       Total │         32       100.0           
 ```
 
 .palegrey[.right[.footnote[Source: tidytab, @gvelasq]]]
