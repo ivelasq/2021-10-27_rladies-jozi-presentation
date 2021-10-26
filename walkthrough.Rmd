@@ -24,6 +24,7 @@ df_routes_jozi <-
 ```{r}
 head(df_routes_jozi)
 ```
+
 # Clean data
 
 ```{r}
@@ -568,4 +569,13 @@ j1 %>%
   gtsave(here::here("tab", "final_tab.html")) # Save the table
 ```
 
+
+```{r}
+library(gtsummary)
+j1 %>% 
+  select(terminal, status) %>% 
+  tbl_summary(by = terminal) %>% 
+  add_n() %>% 
+  add_p()
+```
 
