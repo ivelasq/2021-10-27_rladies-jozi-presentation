@@ -122,7 +122,8 @@ class: center
 .panelset[
 .panel[.panel-name[Spreadsheet]
 
-![](img/spreadsheet.png)
+<center><img src="./img/spreadsheet.png" height="400px"/></center>
+
 .palegrey[.right[.footnote[Photo: Wikipedia]]]
 ]
 
@@ -482,6 +483,15 @@ class: inverse, center, middle
 
 # Tables in R
 
+|             |               |                |
+|-------------|---------------|----------------|
+| apaTables   | pixiedust     | modelsummary   |
+| DT          | reactable     | fixest::etable |
+| flextable   | rhandsontable | mmtable2       |
+| formattable | stargazer     | texreg         |
+| huxtable    | sjPlot        | compareGroups  |
+| gt          | tableone      | tidytab        |
+| kable       | htmlTable     | janitor        |
 
 ---
 
@@ -496,7 +506,8 @@ class: inverse, center, middle
 
 # Let's make a table!
 
-RStudio Cloud Project: https://bit.ly/jozitab
+RStudio Cloud Project: https://bit.ly/joziproject
+
 Github repo: https://bit.ly/jozirepo
 
 ---
