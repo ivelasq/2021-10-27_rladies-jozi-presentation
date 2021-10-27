@@ -15,13 +15,13 @@ library(emo)
 # Around the World in a Single Table `r emo::ji("balloon")`
 ## 2021-10-27 R-Ladies Johannesburg Presentation
 
-I will be discussing tables as a format for communicating information and walking through creating a table in R using the {gt} package.
+I will be discussing tables as tools for visualizing data and walking through creating a table in R using the {gt} package.
 
 `r emo::ji("calendar")` [Event Page](https://www.meetup.com/rladies-johannesburg/events/281522272/)
 
-`r emo::ji("memo")` [Presentation](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/slides.html) (DRAFT)
+`r emo::ji("memo")` [Presentation](https://bit.ly/jozipres)
 
-`r emo::ji("computer")` [RStudio Cloud (requires login)](https://rstudio.cloud/project/3093601)
+`r emo::ji("computer")` [RStudio Cloud (requires login)](https://bit.ly/jozitab)
 
 `r emo::ji("world")` [Final Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 

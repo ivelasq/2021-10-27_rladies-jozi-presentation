@@ -5,20 +5,17 @@
 
 ## 2021-10-27 R-Ladies Johannesburg Presentation
 
-I will be discussing tables as a format for communicating information
-and walking through creating a table in R using the {gt} package.
+I will be discussing tables as tools for visualizing data and walking
+through creating a table in R using the {gt} package.
 
 📆 [Event
 Page](https://www.meetup.com/rladies-johannesburg/events/281522272/)
 
-📝
-[Presentation](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/slides.html)
-(DRAFT)
+📝 [Presentation](https://bit.ly/jozipres)
 
-💻 [RStudio Cloud (requires
-login)](https://rstudio.cloud/project/3093601)
+💻 [RStudio Cloud (requires login)](https://bit.ly/jozitab)
 
-🌎 [Final
+🌍 [Final
 Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 
 🔗 Links mentioned in talk:
