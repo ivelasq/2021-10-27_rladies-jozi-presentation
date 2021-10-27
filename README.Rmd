@@ -21,7 +21,7 @@ I will be discussing tables as tools for visualizing data and walking through cr
 
 `r emo::ji("memo")` [Presentation](https://bit.ly/jozipres)
 
-`r emo::ji("computer")` [RStudio Cloud (requires login)](https://bit.ly/jozitab)
+`r emo::ji("computer")` [RStudio Cloud (requires login)](https://bit.ly/joziproject)
 
 `r emo::ji("world")` [Final Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 

@@ -13,9 +13,9 @@ Page](https://www.meetup.com/rladies-johannesburg/events/281522272/)
 
 📝 [Presentation](https://bit.ly/jozipres)
 
-💻 [RStudio Cloud (requires login)](https://bit.ly/jozitab)
+💻 [RStudio Cloud (requires login)](https://bit.ly/joziproject)
 
-🌍 [Final
+🌐 [Final
 Table](https://ivelasq.github.io/2021-10-27_rladies-jozi-presentation/tab/final_tab.html)
 
 🔗 Links mentioned in talk:
