@@ -163,7 +163,7 @@ j1 %>%
     time_before_depart = "Time Before Departure"
   ) %>% 
   cols_align(align = "right", # Align status to the right
-             columns = "status")
+             columns = "terminal")
 ```
 
 # Edit cell styles
@@ -413,7 +413,7 @@ j1 %>%
     fill = "#D90707",
     background = "#DABD8F"
   ) %>% 
-  tab_options( # Edit table options
+  tab_options( # Edit table options https://gt.rstudio.com/reference/tab_options.html
     table.width = px(1000)
   ) 
 ```
