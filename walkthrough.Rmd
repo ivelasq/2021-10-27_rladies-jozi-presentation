@@ -56,7 +56,7 @@ j1 %>%
   gt() %>% # Create gt_tbl object
   tab_header(
     title = "O. R. Tambo International Airport", # Add title
-    subtitle = html("Departures") # Add subtitle
+    subtitle = "Departures" # Add subtitle
   ) 
 ```
 
@@ -94,7 +94,7 @@ j1 %>%
     subtitle = html("<font size=6><strong>Departures</strong></font>") # Add subtitle
   ) %>% 
    tab_spanner(label = "You are in Terminal A", # Add table spanner
-              columns = 4:last_col())
+              columns = 5:last_col())
 ```
 
 # Add source note
