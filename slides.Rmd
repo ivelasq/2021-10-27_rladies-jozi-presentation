@@ -522,6 +522,7 @@ background-color: #B38069
 | huxtable    | sjPlot        | compareGroups  |
 | gt          | tableone      | tidytab        |
 | kable       | htmlTable     | janitor        |
+| gtsummary   | statar        | arsenal        |
 
 ---
 
@@ -545,4 +546,4 @@ class: center, middle
 
 Slides made with [xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html) `r emo::ji("thumbsup")`
 
-
+Contributors: [Shannon Pileggi](https://github.com/shannonpileggi)
